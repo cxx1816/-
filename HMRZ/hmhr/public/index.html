@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- vue文件里：写vue模板语法->webpack+vue-loader等插件，会帮我们把vue文件标签弄出来插入到HTML网页里 -->
+    <!-- HTML文件里：使用webpack配置项(使用ejs模板语法)，尖括号百分号组成=就是给原地赋值npm -->
+    <title><%= webpackConfig.name %></title>
+     <!-- 引入样式 -->
+      <% for(var css of htmlWebpackPlugin.options.cdn.css) { %>
+        <link rel="stylesheet" href="<%=css%>">
+        <% } %>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= webpackConfig.name %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+        <!-- 引入JS -->
+    <% for(var js of htmlWebpackPlugin.options.cdn.js) { %>
+      <script src="<%=js%>"></script>
+    <% } %>
+  </body>
+</html>
